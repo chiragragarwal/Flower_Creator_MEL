@@ -1,0 +1,11 @@
+Author	: Chirag R. Agarwal
+Email	: chirag.agarwalr@gmail.com
+Site	: http://www.agarwalchirag.wordpress.com
+
+This a MEL script to generate a realistic flower with random petal orientations. MEL stands for 'Maya Embedded Language'.
+This code generates a flower with a fixed number of petals. Yes, we can make one with random number of petals or a user defined number too.
+Creating different flowers would be covered in the following post.
+
+To see the results, you can always check my blog http://agarwalchirag.wordpress.com/2012/06/26/why-mel-a-mel-script-to-create-realistic-flowers-maya/
+
+

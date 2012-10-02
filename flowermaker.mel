@@ -1,0 +1,74 @@
+global proc flowermaker()
+{
+	
+	int $numPetals = 10;
+	
+	$createshader = 1;
+	
+	//Check for shader :
+	string $shads[] = `ls -mat`;
+	
+	for($myNode in $shads)
+	{
+		if($myNode =="petalColor")
+		{
+			$createshader = 0;
+		}	
+	}	
+	
+	switch($createshader)
+	{
+		case 0:
+				print "SHADER ALREADY PRESENT. CHILL OUT";
+				break;
+		case 1:
+				print "NEED TO BUILD THE SHADER";
+				break;
+	}
+	
+	//build flower core
+	sphere -ax 0 1 0 -n "core";
+	string $myCore[] = `ls -sl`;	
+	scale 0.485 .262 .485;
+	
+	
+	//build petal
+	sphere -ax 0 1 0;
+	move 0.067 0 -1;
+	scale 0.482 0.176 1;
+	
+	FreezeTransformations;
+	ResetTransformations;
+	
+	string $myPetal[] = `ls -sl`;
+	
+	parent $myPetal $myCore;
+	
+	//moving the petal tip
+	select($myPetal[0]+".cv[3][7]");
+	move -r 0 1 0;
+	
+	//bending inner part of petal down
+	
+	for($i = 5; $i<=6; $i++)
+	{
+		for($j=0;$j<=7;$j++)
+		{
+			select($myPetal[0]+ ".cv["+$i+"]["+$j+"]");
+			move -r 0 -0.18 0;
+		}	
+	}	
+	
+	//Duplicating the petals
+	select $myPetal[0];
+	float $degreeApart = (360/$numPetals);
+	for($i=1;$i<=$numPetals;$i++)
+	{
+		duplicate;
+		rotate -r 0 $degreeApart 0;
+	}	
+	
+	
+	select $myCore;
+	rename "Flower0";
+}
